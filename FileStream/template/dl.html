@@ -5,7 +5,7 @@
     <meta property="og:image" content="https://www.flaticon.com/premium-icon/icons/svg/2626/2626281.svg" itemprop="thumbnailUrl">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANIFLIX</title>
+    <title>Ankit</title>
     <link rel="stylesheet" type='text/css' href="https://drive.google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
@@ -15,60 +15,29 @@
     <header>
         <div class="toogle"></div>
         <div id="file-name" class="cyber">
-            [ANIFLIX]
+            Ankit
         </div>
     </header>
 
     <div class="container">
-        <button id="download-btn" class="cybr-btn">
-            Download
-            <span aria-hidden>_</span>
-            <span aria-hidden class="cybr-btn__glitch">_404 Error</span>
-            <span aria-hidden class="cybr-btn__tag">_%s</span>
-        </button>
+        <a href="{{file_url}}">
+            <button class="cybr-btn">
+                Download
+                <span aria-hidden>_</span>
+                <span aria-hidden class="cybr-btn__glitch">_404 Error</span>
+                <span aria-hidden class="cybr-btn__tag">_%s</span>
+            </button>
+        </a>
     </div>
-    
-    <script>
-        document.getElementById("download-btn").addEventListener("click", async function () {
-            const fileUrl = "{{file_url}}";
-            let baseFileName = "Aniflix_" + decodeURIComponent("{{file_name}}").replace(/\s+/g, '_');
-            let extension = ".mp4";
-            let fileName = baseFileName + extension;
-            
-            // Check localStorage for existing downloads
-            let count = localStorage.getItem(baseFileName) || 0;
-            count = parseInt(count) + 1;
-            localStorage.setItem(baseFileName, count);
-            
-            if (count > 1) {
-                fileName = `${baseFileName} (${count})${extension}`;
-            }
-            
-            try {
-                const response = await fetch(fileUrl);
-                const blob = await response.blob();
-                const blobUrl = window.URL.createObjectURL(blob);
-                
-                const a = document.createElement("a");
-                a.href = blobUrl;
-                a.download = fileName;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(blobUrl);
-            } catch (error) {
-                console.error("Download failed:", error);
-            }
-        });
-    </script>
-    
-    <script>
+	<script>
         const body = document.querySelector('body');
         const title = document.querySelector('#file-name');
+        const footer = document.querySelector('footer');
         const toogle = document.querySelector('.toogle');
         toogle.onclick = () => {
-            body.classList.toggle('dark');
-            title.classList.toggle('dark');
+            body.classList.toggle('dark')
+            footer.classList.toggle('dark')
+            title.classList.toggle('dark')
         }
     </script>
 </body>
