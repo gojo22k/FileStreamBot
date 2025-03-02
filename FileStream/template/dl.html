@@ -20,7 +20,7 @@
     </header>
 
     <div class="container">
-        <a href="{{file_url}}">
+        <a id="download-link" href="{{file_url}}" download="Aniflix_{{file_name}}.mp4">
             <button class="cybr-btn">
                 Download
                 <span aria-hidden>_</span>
@@ -29,15 +29,22 @@
             </button>
         </a>
     </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileName = "Aniflix_" + decodeURIComponent("{{file_name}}").replace(/\s+/g, '_') + ".mp4";
+            const downloadLink = document.getElementById("download-link");
+            downloadLink.setAttribute("download", fileName);
+        });
+    </script>
+    
     <script>
         const body = document.querySelector('body');
         const title = document.querySelector('#file-name');
-        const footer = document.querySelector('footer');
         const toogle = document.querySelector('.toogle');
         toogle.onclick = () => {
-            body.classList.toggle('dark')
-            footer.classList.toggle('dark')
-            title.classList.toggle('dark')
+            body.classList.toggle('dark');
+            title.classList.toggle('dark');
         }
     </script>
 </body>
