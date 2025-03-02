@@ -94,7 +94,8 @@ def get_name(media_msg: Message | FileId) -> str:
         ext = "." + ext if ext else ""
 
         date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        file_name = f"{media_type}-{date}{ext}"
+        file_name = "aniflix_filename.mp4"
+
 
     return file_name
 
